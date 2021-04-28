@@ -40,5 +40,8 @@ interface AllSongsDao {
     @Query(value = "Select * from all_songs_table")
     suspend fun getAllSongs():List<SongEntity>
 
+    /*@Query(value = "Select * from all_songs_table limit 1")
+    suspend fun getSingleSong():SongEntity//check list,null*/
+
 }
 

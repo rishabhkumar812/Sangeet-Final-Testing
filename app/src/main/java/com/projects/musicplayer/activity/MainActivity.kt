@@ -266,14 +266,27 @@ class MainActivity : AppCompatActivity() {
             //TODO to use this playlist name to display
         })
 
+       /* var firstSong:SongEntity
+        runBlocking {
+            firstSong = mAllSongsViewModel.getSingleSong()
+        }
+        Log.i("Req", "$firstSong Only first song")*/
+        Log.i("Req",isDatabaseInitialized().toString())
+        if (!isDatabaseInitialized()) {
+            Log.i("Req","Preparing for fetching")
+            prepare(ContextWrapper(applicationContext).contentResolver)}
+
 
         setUpBottomSheet()
 
+        initUI()
 
         //TODO: CHECK SYNC AUDIO FETCH AND LOADING OF HOME_FRAGMENT
 
-        if(!permissionGranted())
-        setupPermissions()
+        /*if(!permissionGranted())
+        setupPermissions()*/
+
+
 
         /*if (!isDatabaseInitialized() *//*|| !permissionGranted()*//*) {
             Toast.makeText(
@@ -296,7 +309,7 @@ class MainActivity : AppCompatActivity() {
         }*/
 
         //TODO show progress bar till UI is set
-        initUI()
+
 //        homeFragment.onPlaySongClickCallback = fun(songEntity: SongEntity) {
 //            if (this::mediaPlayer.isInitialized) {
 //                mediaPlayer.stop()
@@ -1035,7 +1048,7 @@ class MainActivity : AppCompatActivity() {
             ).commit()
     }
 
-    fun permissionGranted(): Boolean {
+    /*fun permissionGranted(): Boolean {
         val permission = ContextCompat.checkSelfPermission(
             this,
             Manifest.permission.READ_EXTERNAL_STORAGE
@@ -1060,7 +1073,7 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(
             this,
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-          /*  READ_STORAGE_PERMISSION_REQUEST_CODE*/1
+          *//*  READ_STORAGE_PERMISSION_REQUEST_CODE*//*1
         )
     }
 
@@ -1095,14 +1108,14 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        /*if (requestCode == READ_STORAGE_PERMISSION_REQUEST_CODE) {
+        *//*if (requestCode == READ_STORAGE_PERMISSION_REQUEST_CODE) {
             for (i in permissions.indices) {
                 val permission: String = permissions[i];
                 val grantResult: Int = grantResults[i];
 
                 if (permission == Manifest.permission.READ_EXTERNAL_STORAGE) {
                     if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                        *//*getAudioFiles()*//*
+                        *//**//*getAudioFiles()*//**//*
                         if (!isDatabaseInitialized()) {
                             Toast.makeText(
                                 this,
@@ -1121,9 +1134,9 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        }*/
+        }*//*
 
-    }
+    }*/
 
     private fun getAudioFiles() {
 
@@ -1194,6 +1207,7 @@ class MainActivity : AppCompatActivity() {
         sharedPreferences.getBoolean("songLoaded", false)
 
     private fun prepare(mContentResolver: ContentResolver) {
+
         val mSongs = mutableListOf<SongEntity>()
         val uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI
         val cur: Cursor? = mContentResolver.query(
@@ -1232,4 +1246,5 @@ class MainActivity : AppCompatActivity() {
             return
         }
     }
+
 }
