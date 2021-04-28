@@ -16,8 +16,8 @@ class Utility {
             else if(song2Name[0].isLetter()){
                 1
             }
+            else
             song1Name.compareTo(song2Name,true)
-
         }
     }
 }
