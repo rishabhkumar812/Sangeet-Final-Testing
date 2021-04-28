@@ -1,15 +1,20 @@
 package com.projects.musicplayer.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.projects.musicplayer.database.SongEntity
 import com.projects.musicplayer.repository.AllSongsRepository
 import kotlinx.coroutines.launch
+import java.util.*
+import kotlin.Comparator
 
 
 class AllSongsViewModel(application: Application) : ViewModel() {
+
 
     private val mAllSongsRepository: AllSongsRepository = AllSongsRepository(application)
     val allSongs: LiveData<List<SongEntity>>
@@ -70,10 +75,4 @@ class AllSongsViewModel(application: Application) : ViewModel() {
             mAllSongsRepository.updateFav(id)
         }
     }
-
-    /*override fun onCleared() {
-        super.onCleared()
-        mAllSongsRepository.closeDB()
-    }*/
-
 }

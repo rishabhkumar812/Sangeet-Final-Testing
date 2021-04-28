@@ -27,6 +27,7 @@ import com.projects.musicplayer.uicomponents.CustomDialog
 import com.projects.musicplayer.viewmodel.*
 import com.projects.musicplayer.database.SongEntity
 import com.projects.musicplayer.rest.Song
+import com.projects.musicplayer.utils.Utility
 //import com.projects.musicplayer.rest.FavSongsViewModel
 //import com.projects.musicplayer.rest.FavSongsViewModelFactory
 import kotlinx.coroutines.CoroutineScope
@@ -34,6 +35,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.lang.Exception
+import java.util.*
 
 class HomeFragment : Fragment() {
 
@@ -94,7 +96,14 @@ class HomeFragment : Fragment() {
 
         mAllSongsViewModel.allSongs.observe(viewLifecycleOwner, Observer {
             Log.i("LIVEDATA-UPDATE", "Setting all songs again")
-            adapterAllSongs.setSongs(it!!)
+            if(it.isNullOrEmpty())
+                adapterAllSongs.setSongs(it!!)
+            else{
+                val tempSongList = mutableListOf<SongEntity>()
+                tempSongList.addAll(it)
+                Collections.sort(tempSongList,Utility.songComparator)
+                adapterAllSongs.setSongs(tempSongList)
+            }
 
 
             //set up data for first time

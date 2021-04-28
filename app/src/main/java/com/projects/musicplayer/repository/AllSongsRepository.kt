@@ -44,8 +44,4 @@ class AllSongsRepository(application: Application) {
             return mAllSongsDao.favSongs
         }
 
-    fun closeDB(){
-        db.close()
-    }
-
 }

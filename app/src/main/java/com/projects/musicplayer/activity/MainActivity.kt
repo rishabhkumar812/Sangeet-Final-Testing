@@ -577,7 +577,7 @@ class MainActivity : AppCompatActivity() {
 
     fun setUpExpandedNowPlaying() {
         btnMinimizeToolbar.setOnClickListener {
-            mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            /*mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
             if (bottomNavigationView.selectedItemId == R.id.nowPlaying)
                 bottomNavigationView.selectedItemId =
                     R.id.home_button
@@ -586,7 +586,16 @@ class MainActivity : AppCompatActivity() {
                 .replace(
                     R.id.frame,
                     HomeFragment()
-                ).commit()
+                ).commit()*/
+
+            mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+
+            when (supportFragmentManager.findFragmentById(R.id.frame)) {
+                is HomeFragment -> bottomNavigationView.selectedItemId = R.id.home_button
+                is PlaylistsFragment -> bottomNavigationView.selectedItemId = R.id.tab_playlist
+                else -> {}
+            }
+
         }
 
         btnSongList.setOnClickListener {
@@ -998,9 +1007,15 @@ class MainActivity : AppCompatActivity() {
             mBottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 
             //if current selected tab is now playing then set current selected tab to home tab
-            if (bottomNavigationView.selectedItemId == R.id.nowPlaying)
+           /* if (bottomNavigationView.selectedItemId == R.id.nowPlaying)
                 bottomNavigationView.selectedItemId =
-                    R.id.home_button
+                    R.id.home_button*/
+
+            when (supportFragmentManager.findFragmentById(R.id.frame)) {
+                is HomeFragment -> bottomNavigationView.selectedItemId = R.id.home_button
+                is PlaylistsFragment -> bottomNavigationView.selectedItemId = R.id.tab_playlist
+                else -> {}
+            }
 
         } else
             when (supportFragmentManager.findFragmentById(R.id.frame)) {
