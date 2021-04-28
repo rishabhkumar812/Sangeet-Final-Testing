@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/cardViewForSong"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/recent_song_track"
+    app:background="@color/backgroundColor">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutCard"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/backgroundColor">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="5dp">
+
+        <TextView
+            android:id="@+id/txtSongName"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:ellipsize="marquee"
+            android:scrollHorizontally="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:text="@string/in_motion"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/text_thin"
+            />
+
+        <TextView
+            android:id="@+id/txtSongArtistName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtSongName"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:text="@string/trent_renzor_and_atticus_ross"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/radius_small" />
+
+        <ToggleButton
+            android:id="@+id/btnFav"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/fav_selector"
+            android:textOff=""
+            android:textOn="" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

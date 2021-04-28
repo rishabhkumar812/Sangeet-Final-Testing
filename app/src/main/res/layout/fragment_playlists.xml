@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".fragments.PlaylistsFragment">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/favCardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_margin="5dp"
+        android:background="@color/backgroundColor"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="2dp"
+            android:background="@color/backgroundColor"
+            android:orientation="horizontal"
+            android:padding="7dp"
+            android:weightSum="5">
+
+            <TextView
+                android:id="@+id/Favorites"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:text="@string/favorites"
+                android:textColor="@color/whiteText"
+                android:textSize="@dimen/text_thin" />
+
+            <ImageView
+                android:id="@+id/leftArrow"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:src="@drawable/ic_round_arrow_forward_ios_24" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/horizontalLine2"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/favCardView"
+        android:layout_marginTop="10dp"
+        android:background="@color/white" />
+
+
+    <TextView
+        android:id="@+id/personalization"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/horizontalLine2"
+        android:background="@color/backgroundColor"
+        android:gravity="start"
+        android:layout_marginHorizontal="5dp"
+        android:paddingTop="20dp"
+        android:text="@string/personalization"
+        android:textColor="@color/whiteText"
+        android:textSize="@dimen/big_text" />
+
+    <View
+        android:id="@+id/horizontalLine"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/personalization"
+        android:background="@color/white" />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabCreatePlaylist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/create_playlist"
+        android:src="@drawable/ic_add"
+        app:backgroundTint="@color/primaryColor"
+        app:borderWidth="0dp"
+        app:rippleColor="@color/textPrimary" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewPlaylists"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/horizontalLine"
+        android:padding="5dp"
+        android:scrollbarStyle="outsideOverlay"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/single_playlist_item" />
+
+
+    <RelativeLayout
+        android:id="@+id/emptyPlaylistLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/horizontalLine"
+        android:layout_above="@id/fabCreatePlaylist"
+        android:background="@color/backgroundColor">
+
+        <ImageView
+            android:id="@+id/icNoPlaylist"
+            android:layout_width="116dp"
+            android:layout_height="116dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_playlist_empty" />
+
+        <TextView
+            android:id="@+id/txtEmptyPlaylist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/icNoPlaylist"
+            android:gravity="center_horizontal"
+            android:maxLines="3"
+            android:text="No Playlist Created \n  Tap + to create"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/text_thin"
+            android:textStyle="normal" />
+    </RelativeLayout>
+
+</RelativeLayout>

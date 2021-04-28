@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context=".fragments.SinglePlaylistFragment">
+
+
+    <include
+        android:id="@+id/SinglePlaylistToolbar"
+        layout="@layout/toolbar" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSinglePlaylist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/SinglePlaylistToolbar"
+        android:padding="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/single_song_item" />
+
+    <RelativeLayout
+        android:id="@+id/emptyPlaylistLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/SinglePlaylistToolbar"
+        android:background="@color/backgroundColor">
+
+        <ImageView
+            android:id="@+id/playlistIcon"
+            android:layout_width="116dp"
+            android:layout_height="116dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_playlist_empty" />
+
+        <TextView
+            android:id="@+id/txtEmptyPlaylist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/playlistIcon"
+            android:gravity="center_horizontal"
+            android:maxLines="3"
+            android:text="No Songs in this Playlist \n  Add some songs :)"
+            android:textColor="@color/textPrimary"
+            android:textSize="@dimen/text_thin"
+            android:textStyle="normal" />
+    </RelativeLayout>
+
+</RelativeLayout>

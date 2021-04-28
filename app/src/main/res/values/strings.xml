@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Sangeet</string>
+    <string name="home">Home</string>
+    <string name="now_playing">Now Playing</string>
+    <string name="playlists">Playlists</string>
+    <string name="personalization">Personalization</string>
+    <string name="favorites">Favorites</string>
+    <string name="recent_tracks">Recent Tracks</string>
+    <string name="in_motion">In Motion</string>
+    <string name="trent_renzor_and_atticus_ross">Trent Renzor and Atticus Ross</string>
+    <string name="playlist_name">Playlist Name</string>
+    <string name="NoSong">No Song</string>
+    <string name="previous_song">Previous Song</string>
+    <string name="next_song">Next Song</string>
+    <string name="music_player">Sangeet</string>
+    <string name="create_playlist">Create Playlist</string>
+    <string name="enter_playlist_name">Enter Playlist Name</string>
+    <string name="choose_playlist">Choose Playlist:</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
