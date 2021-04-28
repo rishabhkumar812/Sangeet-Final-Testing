@@ -71,8 +71,9 @@ class AllSongsViewModel(application: Application) : ViewModel() {
         }
     }
 
-    override fun onCleared() {
+    /*override fun onCleared() {
         super.onCleared()
-    }
+        mAllSongsRepository.closeDB()
+    }*/
 
 }

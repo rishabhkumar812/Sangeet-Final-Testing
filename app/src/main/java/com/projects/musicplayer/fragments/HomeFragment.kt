@@ -98,7 +98,7 @@ class HomeFragment : Fragment() {
 
 
             //set up data for first time
-            if (mMediaControlViewModel.nowPlayingSong.value == null) {
+            if (!it.isNullOrEmpty() && mMediaControlViewModel.nowPlayingSong.value == null) {
                 mMediaControlViewModel.nowPlayingSong.value = it.random()
                 mMediaControlViewModel.nowPlayingSongs.value = it
             }

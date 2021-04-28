@@ -272,6 +272,7 @@ class MainActivity : AppCompatActivity() {
 
         //TODO: CHECK SYNC AUDIO FETCH AND LOADING OF HOME_FRAGMENT
 
+        if(!permissionGranted())
         setupPermissions()
 
         /*if (!isDatabaseInitialized() *//*|| !permissionGranted()*//*) {
@@ -1044,7 +1045,7 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(
             this,
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-            READ_STORAGE_PERMISSION_REQUEST_CODE
+          /*  READ_STORAGE_PERMISSION_REQUEST_CODE*/1
         )
     }
 
@@ -1055,14 +1056,38 @@ class MainActivity : AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-        if (requestCode == READ_STORAGE_PERMISSION_REQUEST_CODE) {
+        when(requestCode) {
+            1 -> {
+                Log.i("Req", "$requestCode Requested read storage")
+                if (requestCode == READ_STORAGE_PERMISSION_REQUEST_CODE) {
+                    for (i in permissions.indices) {
+                        val permission: String = permissions[i];
+                        val grantResult: Int = grantResults[i];
+
+                        if (permission == Manifest.permission.READ_EXTERNAL_STORAGE) {
+                            if (grantResult == PackageManager.PERMISSION_GRANTED) {
+                                Log.i("Req", "Permission granted for read storage")
+                                if (!isDatabaseInitialized()) {
+                                    prepare(ContextWrapper(applicationContext).contentResolver)}
+                            }
+                            else {
+                                Log.i("Req", "Permission denied for read storage")
+                                Toast.makeText(this,"Storage permission required",Toast.LENGTH_LONG).show()
+                                finish()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        /*if (requestCode == READ_STORAGE_PERMISSION_REQUEST_CODE) {
             for (i in permissions.indices) {
                 val permission: String = permissions[i];
                 val grantResult: Int = grantResults[i];
 
                 if (permission == Manifest.permission.READ_EXTERNAL_STORAGE) {
                     if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                        /*getAudioFiles()*/
+                        *//*getAudioFiles()*//*
                         if (!isDatabaseInitialized()) {
                             Toast.makeText(
                                 this,
@@ -1081,7 +1106,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-        }
+        }*/
 
     }
 
