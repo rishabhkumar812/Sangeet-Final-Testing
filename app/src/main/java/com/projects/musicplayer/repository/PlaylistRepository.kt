@@ -42,7 +42,6 @@ class PlaylistRepository(application: Application) {
     //pass entire list of songs whenever a new song is added/deleted from that individual playlist
 
     suspend fun updatePlaylist(id: Int, mSongs: List<Int>) {
-        //TODO check if type converter is working properly
         mPlaylistDao.updatePlaylist(id, PlaylistConverter.fromList(mSongs)!!)
     }
 }

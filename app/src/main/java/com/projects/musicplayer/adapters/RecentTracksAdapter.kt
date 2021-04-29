@@ -66,9 +66,6 @@ class RecentTracksAdapter(val context: Context) :
 
 
             holder.cardViewForRecentTrack.setOnClickListener{
-                //TODO play song
-
-                //TODO add to recent again, maybe using a callback
                 val cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"))
                 val currentLocalTime = cal.time
                 val date: DateFormat = SimpleDateFormat("yyMMddHHmmssZ")

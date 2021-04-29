@@ -69,7 +69,6 @@ class SongsQueueFragment : Fragment() {
         })
 
         mMediaControlViewModel.nowPlayingSong.observe(viewLifecycleOwner, Observer {
-            //TODO to show current playing song as selected
             songQueueRecyclerViewAdapter.setSongs(mMediaControlViewModel.nowPlayingSongs.value!!)
         })
 
@@ -105,7 +104,6 @@ class SongsQueueFragment : Fragment() {
         songQueueRecyclerViewAdapter.onSongClickCallback = fun(recentSong: RecentSongEntity,song:SongEntity,allSongs:List<SongEntity>) {
             //update fav whenever fav button clicked
             uiscope.launch {
-                //TODO both play song and add to recent
                 mRecentSongsViewModel.insertAfterDeleteSong(recentSong)
                 mMediaControlViewModel.nowPlayingSong.value = song
             }
@@ -127,7 +125,6 @@ class SongsQueueFragment : Fragment() {
 
         if (activity != null){
             // set this playlist according to which fragment called it
-            //TODO set from viewmodel
             toolbar.title = "Play Queue"
 
             songQueueRecyclerViewAdapter= SongQueueAdapter(activity as Context)

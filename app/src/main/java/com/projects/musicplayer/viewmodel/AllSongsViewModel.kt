@@ -59,7 +59,6 @@ class AllSongsViewModel(application: Application) : ViewModel() {
         viewModelScope.launch {
             mSongEntity = mAllSongsRepository.getSongById(id)
         }
-        //TODO: HANDLE NULL VALUES IF ANY
         return mSongEntity!!
     }
 

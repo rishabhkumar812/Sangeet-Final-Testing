@@ -91,11 +91,7 @@ class AllSongsAdapter(context: Context) : RecyclerView.Adapter<AllSongsAdapter.A
             }
 
             holder.cardViewForSong.setOnClickListener {
-                //TODO play the song
                 Log.d("NOWPLAYING-ADAPTER", "Now Playing from adapter updated")
-
-                //TODO add to recent, maybe using a callback
-
                 val cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"))
                 val currentLocalTime = cal.time
                 val date: DateFormat = SimpleDateFormat("yyMMddHHmmssZ")

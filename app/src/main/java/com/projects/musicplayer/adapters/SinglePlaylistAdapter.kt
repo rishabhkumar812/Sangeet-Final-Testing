@@ -86,10 +86,6 @@ class SinglePlaylistAdapter(
             }
 
             holder.cardViewForSong.setOnClickListener {
-                //TODO play the song
-
-
-                //TODO add to recent, maybe using a callback
                 val cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"))
                 val currentLocalTime = cal.time
                 val date: DateFormat = SimpleDateFormat("yyMMddHHmmssZ")
@@ -109,7 +105,6 @@ class SinglePlaylistAdapter(
     }
 
     fun setSongs(mSongs: List<SongEntity>) {
-        //TODO add songs taking care of list and String
         songs = mSongs
         notifyDataSetChanged()
     }

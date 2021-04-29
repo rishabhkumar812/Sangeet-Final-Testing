@@ -69,7 +69,6 @@ class PlaylistAdapter(context: Context) :
         }
 
         holder.playlistCardView.setOnClickListener {
-            //TODO open singlePlaylist for this particular playlist
             onPlaylistClickCallback?.invoke(currentPlaylist)
         }
 

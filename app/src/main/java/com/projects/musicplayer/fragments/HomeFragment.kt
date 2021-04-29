@@ -127,7 +127,7 @@ class HomeFragment : Fragment() {
             ).get(RecentSongsViewModel::class.java)
 
         mRecentSongsViewModel.recentSongs.observe(viewLifecycleOwner, Observer {
-            Log.i("LIVEDATA-UPDATE", "Setting recent songs again")//TODO continue
+            Log.i("LIVEDATA-UPDATE", "Setting recent songs again")
             if(!it.isEmpty())
                 toolbar.title = "Recent Tracks"
             else
@@ -139,9 +139,8 @@ class HomeFragment : Fragment() {
             fun(recentSong: RecentSongEntity, song: SongEntity, allSongs: List<SongEntity>) {
                 //update recent tracks
                 uiscope.launch {
-                    //TODO both play song and add to recent
                     mRecentSongsViewModel.insertAfterDeleteSong(recentSong)
-                    //TODO:LIVE DATA NOT OBSERVING IN MAINACTIVITY
+                    //LIVE DATA NOT OBSERVING IN MAINACTIVITY
                     mMediaControlViewModel.nowPlayingSong.value = song
                     mMediaControlViewModel.nowPlayingSongs.value = allSongs
                     mMediaControlViewModel.nowPlaylist.value = "All Songs"
@@ -158,11 +157,9 @@ class HomeFragment : Fragment() {
                 allSongs = mAllSongsViewModel.getAllSongs()
             }
             uiscope.launch {
-                //TODO play here using id
                 mMediaControlViewModel.nowPlaylist.value = "Recent Tracks"
                 mMediaControlViewModel.nowPlayingSong.value = songPlayed
                 mMediaControlViewModel.nowPlayingSongs.value = allSongs
-                //TODO both play song and add to recent
                 mRecentSongsViewModel.insertAfterDeleteSong(song)
             }
         }
@@ -194,7 +191,6 @@ class HomeFragment : Fragment() {
             if (playlistId != -1) {
                 var songs: String? = "sample"
 
-                //TODO: ADD selectedSongId to playlistId
                 runBlocking {
                     songs = mPlaylistViewModel.getPlaylistSongsById(playlistId)
 

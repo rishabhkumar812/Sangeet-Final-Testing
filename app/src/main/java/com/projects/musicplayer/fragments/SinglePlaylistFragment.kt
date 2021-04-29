@@ -37,7 +37,7 @@ class SinglePlaylistFragment : Fragment() {
     lateinit var emptyPlaylistLayout: RelativeLayout
     lateinit var txtEmptyPlaylist: TextView
 
-    //view model related //TODO Check
+    //view model related
     private lateinit var mRecentSongsViewModel: RecentSongsViewModel
     private lateinit var mRecentSongsViewModelFactory: RecentSongsViewModelFactory
     private lateinit var mPlaylistViewModel: PlaylistViewModel
@@ -49,14 +49,14 @@ class SinglePlaylistFragment : Fragment() {
     private val uiscope = CoroutineScope(Dispatchers.Main)
 
     //playlist info
-    //TODO for obtaining info for this playlist
+    //for obtaining info for this playlist
     private var playlistId = 0
     private var playlistName = "Playlist"
     private var playListSongs = "songs "
 
     var selectedSongId = -1
 
-    //TODO ViewModel for single playlist
+    //ViewModel for single playlist
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -124,7 +124,6 @@ class SinglePlaylistFragment : Fragment() {
             fun(recentSong: RecentSongEntity, song: SongEntity, allSongs: List<SongEntity>) {
                 //update fav whenever fav button clicked
                 uiscope.launch {
-                    //TODO both play song and add to recent
                     mRecentSongsViewModel.insertAfterDeleteSong(recentSong)
                     mMediaControlViewModel.nowPlayingSong.value = song
                     mMediaControlViewModel.nowPlayingSongs.value = allSongs
@@ -154,7 +153,6 @@ class SinglePlaylistFragment : Fragment() {
             // set this playlist according to which fragment called it
             playlistId = arguments?.get("ID") as Int
             playlistName = arguments?.get("NAME") as String
-            //TODO Only for debugging purposes, otherwise this argument will be deleted from Bundle
             playListSongs = arguments?.get("SONGS") as String
             Log.i("PLAYLISTINFO", playlistName)
             Log.i("PLAYLISSONGTINFO", playListSongs.length.toString())

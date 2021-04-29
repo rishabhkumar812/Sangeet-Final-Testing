@@ -60,7 +60,6 @@ class SongQueueAdapter (context: Context
             }
 
             holder.cardViewForSong.setOnClickListener {
-                //TODO add to recent, maybe using a callback
                 val cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"))
                 val currentLocalTime = cal.time
                 val date: DateFormat =
@@ -89,7 +88,6 @@ class SongQueueAdapter (context: Context
     }
 
     fun setSongs(mSongs: List<SongEntity>) {
-        //TODO add songs taking care of list and String
         songs = mSongs
         notifyDataSetChanged()
     }
