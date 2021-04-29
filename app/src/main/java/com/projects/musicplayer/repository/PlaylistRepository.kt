@@ -38,11 +38,6 @@ class PlaylistRepository(application: Application) {
     suspend fun getPlaylistSongsById(id: Int): String? = mPlaylistDao.getPlaylistSongsById(id)
 
     fun getPlaylistSongsByIdLive(id: Int): LiveData<String> = mPlaylistDao.getPlaylistSongsByIdLive(id)
-//    {
-//        var playlistSongsList = listOf<Int>()
-//
-//        playlistSongsList = PlaylistConverter.toList(mPlaylistDao.getPlaylistSongsById(id)) as List<Int>
-//    }
 
     //pass entire list of songs whenever a new song is added/deleted from that individual playlist
 
@@ -50,5 +45,4 @@ class PlaylistRepository(application: Application) {
         //TODO check if type converter is working properly
         mPlaylistDao.updatePlaylist(id, PlaylistConverter.fromList(mSongs)!!)
     }
-
 }

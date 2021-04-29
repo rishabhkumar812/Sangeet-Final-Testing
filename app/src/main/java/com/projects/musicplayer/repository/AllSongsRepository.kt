@@ -33,9 +33,6 @@ class AllSongsRepository(application: Application) {
 
     suspend fun getAllSongs() = mAllSongsDao.getAllSongs()
 
-  /*  suspend fun getSingleSong() = mAllSongsDao.getSingleSong()*/
-
-
     val mAllSongs: LiveData<List<SongEntity>>
         get() {
             return mAllSongsDao.allSongs

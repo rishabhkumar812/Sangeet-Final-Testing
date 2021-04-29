@@ -16,7 +16,6 @@ import com.projects.musicplayer.database.RecentSongEntity
 import com.projects.musicplayer.utils.Utility
 import com.squareup.picasso.Picasso
 import java.lang.Long
-//import com.squareup.picasso.Picasso
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -28,7 +27,6 @@ class RecentTracksAdapter(val context: Context) :
     val mInflater: LayoutInflater = LayoutInflater.from(context)
 
     private var songs: List<RecentSongEntity>? = null
-   // private var totalTracks: Int? = null
 
     var onSongClickCallback: ((song: RecentSongEntity) -> Unit)? = null
 
@@ -51,14 +49,6 @@ class RecentTracksAdapter(val context: Context) :
 
     override fun onBindViewHolder(holder: RecentTrackViewHolder, position: Int) {
         if (songs != null) {
-            /*val image= Utility.getAlbumCover(songs!![position].albumId)
-            if (image != null) {
-                holder.imgSingleRecentTrack.setImageBitmap(BitmapFactory.decodeByteArray(image,0,image.size))
-            }
-            else{
-                holder.imgSingleRecentTrack.setImageResource(R.mipmap.default_cover)
-            }*/
-
             try {
                 val genericArtUri = Uri.parse("content://media/external/audio/albumart")
                 val actualArtUri =
@@ -82,8 +72,6 @@ class RecentTracksAdapter(val context: Context) :
                 val cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"))
                 val currentLocalTime = cal.time
                 val date: DateFormat = SimpleDateFormat("yyMMddHHmmssZ")
-                // you can get seconds by adding  "...:ss" to it
-                // you can get seconds by adding  "...:ss" to it
                 date.setTimeZone(TimeZone.getTimeZone("GMT+1:00"))
 
                 val localTime: String = date.format(currentLocalTime)
@@ -109,26 +97,4 @@ class RecentTracksAdapter(val context: Context) :
             songs!!.size;
         else 0;
     }
-    /*
-    private fun getAlbumCover(url:String?): ByteArray?  {
-        if(url==null)
-            return null
-        val mmr = MediaMetadataRetriever()
-
-        try {
-            mmr.setDataSource(url);
-            Log.e("IMAGE","path OBTAINED for this song")
-            return mmr.embeddedPicture;
-        }
-        catch(e:Exception) {
-
-
-            Log.e("IMAGE", e.message+e.stackTrace.toString()+" for path "+url)
-            return null
-        }
-    }
-
-
-     */
-
 }

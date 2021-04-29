@@ -22,8 +22,6 @@ import com.projects.musicplayer.adapters.SinglePlaylistAdapter
 import com.projects.musicplayer.database.PlaylistConverter
 import com.projects.musicplayer.database.RecentSongEntity
 import com.projects.musicplayer.database.SongEntity
-import com.projects.musicplayer.rest.FavSongsViewModel
-import com.projects.musicplayer.rest.FavSongsViewModelFactory
 import com.projects.musicplayer.viewmodel.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,8 +44,6 @@ class SinglePlaylistFragment : Fragment() {
     private lateinit var mPlaylistViewModelFactory: PlaylistViewModelFactory
     private lateinit var mAllSongsViewModel: AllSongsViewModel
     private lateinit var mAllSongsViewModelFactory: AllSongsViewModelFactory
-    private lateinit var mFavSongsViewModel: FavSongsViewModel
-    private lateinit var mFavSongsViewModelFactory: FavSongsViewModelFactory
     private lateinit var mMediaControlViewModel: MediaControlViewModel
 
     private val uiscope = CoroutineScope(Dispatchers.Main)
@@ -82,14 +78,9 @@ class SinglePlaylistFragment : Fragment() {
                     runBlocking {
                         val listSongIds = PlaylistConverter.toList(it)
                         if (listSongIds != null) {
-//                            emptyPlaylistLayout.visibility = View.GONE
                             for (id in listSongIds) {
                                 mSongs.add(mAllSongsViewModel.getSongByIdSuspend(id))
                             }
-                        } else {
-                            //TODO print no songs, add some
-//                            emptyPlaylistLayout.visibility = View.VISIBLE
-
                         }
                     }
                     Log.i("LIVEDATAPLAYLISTUPDATE", mSongs.toString())
@@ -102,11 +93,6 @@ class SinglePlaylistFragment : Fragment() {
 
         })
 
-        /**ViewModel for FavSongs*/
-        mFavSongsViewModelFactory =
-            FavSongsViewModelFactory(activity!!.application)
-        mFavSongsViewModel =
-            ViewModelProvider(this, mFavSongsViewModelFactory).get(FavSongsViewModel::class.java)
 
         singlePlaylistRecyclerViewAdapter.favClickCallback = fun(id: Int) {
             //update fav whenever fav button clicked

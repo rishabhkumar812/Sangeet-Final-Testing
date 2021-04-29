@@ -25,8 +25,7 @@ class SongQueueAdapter (context: Context
 
     //callbacks for item click listeners fro updating live data
     var favClickCallback: ((id: Int) -> Unit)? = null
-    var onSongClickCallback: ((recentSong: RecentSongEntity,song: SongEntity, allFavSongs: List<SongEntity>) -> Unit)? =
-        null    //private var onSongClickCallback: ((id: Int) -> Unit)? = null
+    var onSongClickCallback: ((recentSong: RecentSongEntity,song: SongEntity, allFavSongs: List<SongEntity>) -> Unit)? = null
     var currentPlayingSetSelected: ((currentSong:SongEntity,cardViewOfSong:RelativeLayout,cardView:CardView) -> Unit)? = null
 
     class SongQueueViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -54,13 +53,9 @@ class SongQueueAdapter (context: Context
             holder.btnFav.isChecked = songs!![position].isFav > 0
 
             currentPlayingSetSelected?.invoke(currentSong,holder.relativeLayoutCard,holder.cardViewForSong)
-//            holder.btnFav.isChecked = songs!![position].isFav
 
             holder.btnFav.setOnClickListener {
-//                songs!![position].isFav = !songs!![position].isFav
-//                notifyItemChanged(position)
                 favClickCallback?.invoke(currentSong.songId)
-//                notifyDataSetChanged()
                 Log.d("SINGLE PLAYLIST INFO", songs.toString())
             }
 
@@ -69,8 +64,7 @@ class SongQueueAdapter (context: Context
                 val cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+1:00"))
                 val currentLocalTime = cal.time
                 val date: DateFormat =
-                    SimpleDateFormat("yyMMddHHmmssZ")                // you can get seconds by adding  "...:ss" to it
-                // you can get seconds by adding  "...:ss" to it
+                    SimpleDateFormat("yyMMddHHmmssZ")
                 date.setTimeZone(TimeZone.getTimeZone("GMT+1:00"))
 
                 val localTime: String = date.format(currentLocalTime)
@@ -94,11 +88,6 @@ class SongQueueAdapter (context: Context
         }
     }
 
-
-    //    fun setSongs(mSongs: List<Song>) {
-//        songs = mSongs
-//        notifyDataSetChanged()
-//    }
     fun setSongs(mSongs: List<SongEntity>) {
         //TODO add songs taking care of list and String
         songs = mSongs

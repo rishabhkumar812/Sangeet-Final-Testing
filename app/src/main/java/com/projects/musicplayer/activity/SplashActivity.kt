@@ -60,7 +60,7 @@ class SplashActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(
             this,
             arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE),
-            /*  READ_STORAGE_PERMISSION_REQUEST_CODE*/1
+            1
         )
     }
 
@@ -82,13 +82,11 @@ class SplashActivity : AppCompatActivity() {
                         if (permission == Manifest.permission.READ_EXTERNAL_STORAGE) {
                             if (grantResult == PackageManager.PERMISSION_GRANTED) {
                                 Log.i("Req", "Permission granted for read storage")
-                                /*Handler(Looper.getMainLooper()).postDelayed({*/
-                                    startActivity(//May run without getting permission
+                                    startActivity(
                                         Intent(this@SplashActivity,
                                             MainActivity::class.java)
                                     )
                                     finish()
-                                /*}, 2000)*/
                             }
                             else {
                                 Log.i("Req", "Permission denied for read storage")
@@ -100,33 +98,5 @@ class SplashActivity : AppCompatActivity() {
                 }
             }
         }
-        /*if (requestCode == READ_STORAGE_PERMISSION_REQUEST_CODE) {
-            for (i in permissions.indices) {
-                val permission: String = permissions[i];
-                val grantResult: Int = grantResults[i];
-
-                if (permission == Manifest.permission.READ_EXTERNAL_STORAGE) {
-                    if (grantResult == PackageManager.PERMISSION_GRANTED) {
-                        *//*getAudioFiles()*//*
-                        if (!isDatabaseInitialized()) {
-                            Toast.makeText(
-                                this,
-                                "Fetching Songs from MediaStore for first time",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            prepare(ContextWrapper(applicationContext).contentResolver)}
-                        else {
-                            Toast.makeText(
-                                this,
-                                "Permission not found shutting down",
-                                Toast.LENGTH_LONG
-                            ).show()
-                            finish()
-                        }
-                    }
-                }
-            }
-        }*/
-
     }
 }

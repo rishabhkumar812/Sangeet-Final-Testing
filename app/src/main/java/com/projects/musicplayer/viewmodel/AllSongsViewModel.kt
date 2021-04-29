@@ -41,9 +41,6 @@ class AllSongsViewModel(application: Application) : ViewModel() {
         return mAllSongsRepository.getAllSongs()
     }
 
-    /*suspend fun getSingleSong(): SongEntity {
-        return mAllSongsRepository.getSingleSong()
-    }*/
 
     fun removeSong(songEntity: SongEntity) {
         //use of coroutine scope from viewModelScope

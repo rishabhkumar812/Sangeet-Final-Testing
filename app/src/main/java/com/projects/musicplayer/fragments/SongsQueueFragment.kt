@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.RelativeLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -21,8 +22,6 @@ import com.projects.musicplayer.adapters.SongQueueAdapter
 import com.projects.musicplayer.database.PlaylistConverter
 import com.projects.musicplayer.database.RecentSongEntity
 import com.projects.musicplayer.database.SongEntity
-import com.projects.musicplayer.rest.FavSongsViewModel
-import com.projects.musicplayer.rest.FavSongsViewModelFactory
 import com.projects.musicplayer.viewmodel.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -66,7 +65,6 @@ class SongsQueueFragment : Fragment() {
         })
 
         mMediaControlViewModel.nowPlaylist.observe(viewLifecycleOwner, Observer {
-            //toolbar.title=it
             Log.i("SONGQUEUETITLE","Songs title $it set in queue")
         })
 
@@ -75,19 +73,13 @@ class SongsQueueFragment : Fragment() {
             songQueueRecyclerViewAdapter.setSongs(mMediaControlViewModel.nowPlayingSongs.value!!)
         })
 
-       /* mAllSongsViewModel.allSongs.observe(viewLifecycleOwner, Observer {
-            mMediaControlViewModel.nowPlayingSongs.value=it
-        })*/
-
         songQueueRecyclerViewAdapter.currentPlayingSetSelected = fun(currentSong:SongEntity,cardViewForSong:RelativeLayout,cardView:CardView){
             Log.i("PLAYING","Value of current Song = ${currentSong.songId}")
             Log.i("PLAYING","Value of nowPlayingSong = ${mMediaControlViewModel.nowPlayingSong.value?.songId}")
             Log.i("PLAYING","Value of boolean = ${currentSong.songId==mMediaControlViewModel.nowPlayingSong.value?.songId}")
             if(currentSong.songId==mMediaControlViewModel.nowPlayingSong.value?.songId){
                 Log.i("PLAYING","Change color for ${currentSong.songName}")
-                val color = resources.getColor(R.color.secondaryColor)
-                cardViewForSong.setBackgroundColor(color)
-                cardView.cardElevation= 100F
+                cardViewForSong.setBackgroundColor(ContextCompat.getColor(activity as Context,R.color.secondaryColor))
             }
             else{
                 val color = resources.getColor(R.color.backgroundColor)
