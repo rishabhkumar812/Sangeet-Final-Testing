@@ -188,26 +188,32 @@ class HomeFragment : Fragment() {
 
         addToPlaylistDialog.setOnDismissListener {
             val playlistId: Int = addToPlaylistDialog.selectedPlaylistId
+            Log.i("PLAYLISTSONGS", "Dismiss Listener called with playlistId=$playlistId")
             if (playlistId != -1) {
                 var songs: String? = "sample"
 
                 runBlocking {
                     songs = mPlaylistViewModel.getPlaylistSongsById(playlistId)
-
                 }
                 uiscope.launch {
                     val listOfSongs: List<Int>? = PlaylistConverter.toList(songs)
-                    if (listOfSongs == null)
+                    if (listOfSongs == null) {
+                        Toast.makeText(
+                            activity as Context,
+                            "Added to Playlist",
+                            Toast.LENGTH_SHORT
+                        ).show()
                         mPlaylistViewModel.updatePlaylist(playlistId, listOf(selectedSongId))
+                    }
                     else {
                         val songsList = (listOfSongs as MutableList<Int>)
                         if (!songsList.contains(selectedSongId)) {
+                            songsList.add(selectedSongId)
                             Toast.makeText(
                                 activity as Context,
                                 "Added to Playlist",
                                 Toast.LENGTH_SHORT
                             ).show()
-                            songsList.add(selectedSongId)
                             Log.i("PLAYLISTSONGS", songsList.toString())
                             mPlaylistViewModel.updatePlaylist(playlistId, songsList)
                         } else {
